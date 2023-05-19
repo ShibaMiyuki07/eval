@@ -149,7 +149,7 @@
             </a>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="{{ route('page.commission') }}">
+            <a class="nav-link" href="{{ route('recu.magasin') }}">
               <span class="menu-icon">
                 <i class="mdi mdi-call-received"></i>
               </span>
@@ -356,27 +356,12 @@
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
-            
             <div class="row">
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h3 align='center'>Total de vente/Mois </h3>
-                    <br>
-                    <div class='form-group' align='center'>
-                      <form>
-                        
-                        <button class='btn btn-success'>Exporter</button>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
               <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
               <div class="card">
                   <div class="card-body">
-                    <h3 align='center'>Total de Vente/Mois de...</h3>
-                    <form action='{{ route("pdf.vente.pv") }}' method='post'>
+                    <h3 align='center'>Commission et vente...</h3>
+                    <form action='{{ route("magasin.commission") }}' method='post'>
                       @csrf
                         <div class='form-group'>
                           <select class='form-control' name='idpv' style='color:white;'>
@@ -387,45 +372,14 @@
                           </select>
                         </div>
                         <div align='center' class='form-group'>
-                          <button class='btn btn-success'>Exporter</button>
-                        </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h3>Benefice par mois de tout les points de vente</h3>
-                    <br>
-                    <div class='form-group' align='center'>
-                      <a href='{{ route("pdf.benefice.global") }}'><button class='btn btn-success'>Exporter</button></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h3>Benefice par mois de...</h3>
-                    <form action='{{ route("pdf.benefice.pv") }}' method='post'>
-                      @csrf
-                        <div class='form-group'>
-                          <select name='idpv' class='form-control' style='color:white;'>
-                            <option>Point de vente...</option>
-                            @foreach ($pvs as $pv)
-                              <option value='{{ $pv->idpoint_vente }}'>{{ $pv->nom }}({{ $pv->emplacement }})</option>
-                            @endforeach
-                          </select>
-                        </div>
-                        <div align='center' class='form-group'>
-                          <button class='btn btn-success'>Exporter</button>
+                          <button class='btn btn-success'>Voir</button>
                         </div>
                     </form>
                   </div>
                 </div>
               </div>
             </div>
+            
           <!-- content-wrapper ends -->
           <!-- partial:partials/_footer.html -->
           <!-- partial -->
@@ -454,52 +408,6 @@
     <!-- endinject -->
     <!-- Custom js for this page -->
     <script src="{{ asset('assets/js/dashboard.js') }}"></script>
-    <script>
-      var doughnutPieData = {
-    datasets: [{
-      data: [30, 10, 30],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.5)',
-        'rgba(54, 162, 235, 0.5)',
-        'rgba(255, 206, 86, 0.5)',
-        'rgba(75, 192, 192, 0.5)',
-        'rgba(153, 102, 255, 0.5)',
-        'rgba(255, 159, 64, 0.5)'
-      ],
-      borderColor: [
-        'rgba(255,99,132,1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)'
-      ],
-    }],
-
-    // These labels appear in the legend and in the tooltips when hovering different arcs
-    labels: [
-      'Pink',
-      'Blue',
-      'Yellow',
-    ]
-  };
-  var doughnutPieOptions = {
-    responsive: true,
-    animation: {
-      animateScale: true,
-      animateRotate: true
-    }
-  };
-      if ($("#pieChart").length) {
-        var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
-        var pieChart = new Chart(pieChartCanvas, {
-          type: 'pie',
-          data: doughnutPieData,
-          options: doughnutPieOptions
-        });
-      }
-      
-    </script>
     <!-- End custom js for this page -->
   </body>
 </html>

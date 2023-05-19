@@ -4,6 +4,7 @@ use App\Http\Controllers\Disque_DurController;
 use App\Http\Controllers\EcranController;
 use App\Http\Controllers\ElementController;
 use App\Http\Controllers\LaptopController;
+use App\Http\Controllers\MagasinController;
 use App\Http\Controllers\MarqueController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\Point_VenteController;
@@ -33,15 +34,15 @@ Route::get('/',[UtilisateurController::class,'pageLogin']);
 
 Route::post('/login',[UtilisateurController::class,'login'])->name('utilisateur.login');
 
-Route::get('/indexMagasin',function(){
-    return view('Magasin.index');
-})->name('magasin.acceuil');
+Route::get('/indexMagasin',[ElementController::class,'pageAcceuilMagasin'])->name('magasin.acceuil');
 
 Route::get('/insertref',[ElementController::class,'pageInsertionElement'])->name('page.insertionElement');
 
 Route::get('/insertionLaptop',[LaptopController::class,'pageInsertion'])->name('page.insertionLaptop');
 
 Route::get('/insertionutilisateur',[UtilisateurController::class,'pageInsertion'])->name('page.insertionUtilisateur');
+
+Route::get('/insertCommission',[MagasinController::class,'pageBenefice'])->name('page.commission');
 
 Route::get('/recuMagasin',[Transfert_PV_Magasin_Controller::class,'recu_venant_PV'])->name('recu.magasin');
 
@@ -87,7 +88,7 @@ Route::post('/insertionStockPV',[StockController::class,'insertToPV'])->name('pv
 
 Route::post('/receptionPv',[Transfert_PV_Magasin_Controller::class,'recu'])->name('magasin.reception');
 
-
+Route::post('/selectCommissionPv',[MagasinController::class,'commission_vente'])->name('magasin.commission');
 
 
 
@@ -152,4 +153,10 @@ Route::post('/renvoiStock',[Transfert_PV_Magasin_Controller::class,'envoi_Magasi
 
 Route::get('/deconnexiion',[UtilisateurController::class,'deconnexion'])->name('utilisateur.deconnexion');
 
-Route::get('/export-pdf',[PdfController::class,'exportTest']);
+Route::get('/exportGlobal',[PdfController::class,'exportGlobalParMois'])->name('pdf.vente.global');
+
+Route::post('/exportGlobalByPv',[PdfController::class,'exportGlobalParPv'])->name('pdf.vente.pv');
+
+Route::get('/exportBeneficeGlobal',[PdfController::class,'benefice_mois_global'])->name('pdf.benefice.global');
+
+Route::post('/exportBeneficeParPv',[PdfController::class,'benefice_mois_par_pv'])->name('pdf.benefice.pv');

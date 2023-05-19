@@ -29,7 +29,7 @@ class Stock_PV extends Model
 
     static function selectByPv($idPV)
     {
-        return Stock_PV::with('laptop')->where('idpoint_vente',$idPV)->get();
+        return Stock_PV::with('laptop')->where('idpoint_vente',$idPV)->where('quantite','!=',0)->get();
     }
 
     static function mise_a_jour(Request $request)

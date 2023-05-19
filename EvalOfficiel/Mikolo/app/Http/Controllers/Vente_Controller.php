@@ -34,4 +34,6 @@ class Vente_Controller extends Controller
 
         return view('Point_Vente.Vente.Liste',compact('ventes','session'));
     }
+
+    
 }

@@ -134,3 +134,15 @@ create view disque_dur_marque as select disque_dur.*,marque.marque as disque_dur
 create view laptop_composant as select laptop_marque_processeur_ram_ecran.*,disque_dur_marque.disque_dur_marque,disque_dur_marque.capacite as capacite_disque_dur from laptop_marque_processeur_ram_ecran,disque_dur_marque where laptop_marque_processeur_ram_ecran.iddisque_dur = disque_dur_marque.iddisque_dur;
 
 create view laptop_composant_prix_vente as select laptop_composant.*,stock_magasin.prix_vente from laptop_composant,stock_magasin where laptop_composant.idlaptop = stock_magasin.idlaptop;
+
+create view laptop_composant_vendu as select laptop_composant_prix_vente.*,vente.quantite as quantite_vente,vente.date_vente,vente.idpoint_vente as idpoint_vente from laptop_composant_prix_vente,vente where laptop_composant_prix_vente.idlaptop = vente.idlaptop; 
+
+create view laptop_composant_perdu as select laptop_composant_prix_vente.*,historique_perte.idpoint_vente as point_vente_perte,historique_perte.quantite as quantite_perte,historique_perte.date_perte ,historique_perte.idpoint_vente as idpoint_vente from laptop_composant_prix_vente,historique_perte where laptop_composant_prix_vente.idlaptop = historique_perte.idlaptop;
+
+create view laptop_composant_magasin as select laptop_composant_prix_vente.*,historique_entree_magasin.quantite as quantite_achete ,date_entree as date_achat  from laptop_composant_prix_vente,historique_entree_magasin where laptop_composant_prix_vente.idlaptop = historique_entree_magasin.idlaptop;
+
+create view recu_magasin_transfert as select transfert_magasin.*,quantite_recu from transfert_magasin,recu_magasin where transfert_magasin.idtransfert_magasin = recu_magasin.idtransfert_magasin;
+
+create view laptop_composant_transfert_pv as select laptop_composant_prix_vente.*,recu_magasin_transfert.idpoint_vente as idpoint_vente,date_transfert,quantite_recu from laptop_composant_prix_vente,recu_magasin_transfert where laptop_composant_prix_vente.idlaptop = recu_magasin_transfert.idlaptop;
+
+select extract(month from date_perte) as month,sum(quantite_perte) as quantite_perte,sum(prix_achat)*sum(quantite_perte) as perte_mois,idpoint_vente from "laptop_composant_perdu" where "idpoint_vente" = 'PV002' and 'month' = 'May' group by "month", "idpoint_vente"

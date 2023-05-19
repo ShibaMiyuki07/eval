@@ -31,6 +31,11 @@ class Laptop extends Model
         ]);
     }
 
+
+    function benefice()
+    {
+        
+    }
     static function read()
     {
         return Laptop::all();
