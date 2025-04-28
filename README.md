@@ -49,40 +49,35 @@ Base de données : MySQL
 
 Cloner le dépôt
 
-bash
-Copier
-Modifier
-git clone https://github.com/ShibaMiyuki07/eval.git
-cd eval
+```sh
+ git clone https://github.com/ShibaMiyuki07/eval.git
+ cd eval
+```
 Installer les dépendances
 
-bash
-Copier
-Modifier
+```sh
 composer install
-Configurer l'environnement
+```
 
-bash
-Copier
-Modifier
+Configurer l'environnement
+```sh
 cp .env.example .env
 php artisan key:generate
+```
+
 Créer la base de données
 
 Configurer .env avec les bonnes infos MySQL
 
 Puis lancer les migrations :
-
-bash
-Copier
-Modifier
+```sh
 php artisan migrate
+```
 Démarrer l'application
-
-bash
-Copier
-Modifier
+```sh
 php artisan serve
+```
+
 L’application sera accessible sur http://localhost:8000
 
 🧪 Fonctions à tester
@@ -95,9 +90,3 @@ Vente à un client au point de vente
 Visualisation du stock restant
 
 Statistiques de vente par point de vente
-
-🤝 Contribution
-Les contributions sont les bienvenues ! Merci de créer une issue ou une pull request si vous souhaitez proposer une amélioration.
-
-📄 Licence
-Ce projet est sous licence MIT.
