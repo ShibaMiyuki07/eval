@@ -1,4 +1,5 @@
 💻 Application de Gestion des Ventes - MIKOLO
+
 Cette application permet à l'entreprise MIKOLO de gérer efficacement les stocks et ventes de laptops d'occasion, en séparant clairement les rôles du magasin central et des points de vente.
 
 🚀 Fonctionnalités principales
@@ -10,9 +11,12 @@ Cette application permet à l'entreprise MIKOLO de gérer efficacement les stock
 
 📊 Statistiques de vente globales et par point de vente
 
+
 📋 Suivi des stocks par point de vente
 
+
 👤 Profils utilisateurs
+
 Magasin
 
 Gère les stocks centraux
